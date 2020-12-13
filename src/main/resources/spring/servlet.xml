@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:component-scan base-package="com.imhui">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <!-- 扩展名支持 true则可以使 ?format=xml 生效 -->
+        <property name="favorParameter" value="true"/>
+        <property name="parameterName" value="format"/>
+        <property name="ignoreAcceptHeader" value="false"/>
+        <property name="mediaTypes">
+            <util:properties>
+                <prop key="json">application/json</prop>
+                <prop key="xml">application/xml</prop>
+            </util:properties>
+        </property>
+        <property name="defaultContentType" value="application/json"/>
+    </bean>
+
+    <!-- 自动配置 RequestMappingHandlerMapping RequestMappingHandlerAdapter -->
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" validator="validator">
+<!--        <mvc:message-converters>-->
+<!--            <bean class=""/>-->
+<!--        </mvc:message-converters>-->
+    </mvc:annotation-driven>
+    <mvc:default-servlet-handler default-servlet-name="default"/>
+
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- override default RequestMappingHandlerAdapter -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+        <property name="order" value="-1"/>
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:i18n/messages</value>
+            </list>
+        </property>
+        <property name="useCodeAsDefaultMessage" value="false"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="cacheSeconds" value="60"/>
+    </bean>
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <!-- default source is ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" p:validator-ref="validator"/>
+
+    <!-- i18n -->
+    <bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="lang"/>
+        <property name="cookieMaxAge" value="-1"/>
+        <property name="defaultLocale" value="zh_CN"/>
+    </bean>
+    <bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="zh_CN"/>
+    </bean>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+<!--                <property name="paramName" value="locale"/>-->
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <mvc:resources mapping="/images/**" location="/static/images/"/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+
+</beans>

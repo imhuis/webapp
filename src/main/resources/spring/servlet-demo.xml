@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <!-- 扩展名支持 true则可以使 ?format=xml 生效 -->
+        <!-- 优先级：后缀 > 请求参数 > 请求头部Accept -->
+        <property name="favorParameter" value="true"/>
+        <property name="mediaTypes">
+            <util:properties>
+                <prop key="json">application/json</prop>
+                <prop key="xml">application/xml</prop>
+            </util:properties>
+        </property>
+        <property name="defaultContentType" value="application/json"/>
+    </bean>
+
+    <!-- 内容协商 -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+        <property name="order" value="0"/>
+        <property name="defaultViews">
+            <util:list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+                <bean class="org.springframework.web.servlet.view.xml.MappingJackson2XmlView"/>
+            </util:list>
+        </property>
+        <!-- viewResolvers可以不用配置 默认全局 -->
+        <property name="viewResolvers">
+            <util:list>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/WEB-INF/views/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+            </util:list>
+        </property>
+    </bean>
+
+</beans>
