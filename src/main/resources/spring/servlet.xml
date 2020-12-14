@@ -5,10 +5,12 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/websocket https://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
     <context:component-scan base-package="com.imhui">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -87,6 +89,11 @@
         <property name="defaultLocale" value="zh_CN"/>
     </bean>
     
+    <mvc:cors>
+        <mvc:mapping path="/api/**"
+                     allowed-origins="*" allowed-headers="*" allowed-methods="GET,POST,DELETE,PUT,PATCH,OPTIONS"
+                     allow-credentials="true" exposed-headers="Accept,Allow,Content-Type"/>
+    </mvc:cors>
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/*"/>
