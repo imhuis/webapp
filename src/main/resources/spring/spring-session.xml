@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id="redisOperationsSessionRepository" class="org.springframework.session.data.redis.RedisOperationsSessionRepository">-->
+<!--        <constructor-arg ref="lettuceConnectionFactory"/>-->
+<!--    </bean>-->
+<!--    <bean id="sessionRepositoryFilter" class="org.springframework.session.web.http.SessionRepositoryFilter">-->
+<!--        <constructor-arg ref="redisOperationsSessionRepository"/>-->
+<!--    </bean>-->
+    <bean id="redisHttpSessionConfiguration" class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+        <property name="maxInactiveIntervalInSeconds" value="1800"/>
+    </bean>
+
+</beans>

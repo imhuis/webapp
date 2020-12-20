@@ -4,7 +4,10 @@ import com.imhui.core.interceptor.WebSocketHandshakeInterceptor;
 import com.imhui.mvc.socket.DemoSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurationSupport;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
@@ -35,6 +38,20 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
     @Bean
     public WebSocketHandshakeInterceptor webSocketHandshakeInterceptor(){
         return new WebSocketHandshakeInterceptor();
+    }
+
+    /**
+     * {@link WebSocketConfigurationSupport}
+     * @return taskScheduler
+     */
+    @Bean
+    public TaskScheduler taskScheduler(){
+        ThreadPoolTaskScheduler threadPoolScheduler = new ThreadPoolTaskScheduler();
+        threadPoolScheduler.setThreadNamePrefix("SockJS-");
+        threadPoolScheduler.setPoolSize(Runtime.getRuntime().availableProcessors());
+        threadPoolScheduler.setRemoveOnCancelPolicy(true);
+        threadPoolScheduler.initialize();
+        return threadPoolScheduler;
     }
 
 }

@@ -36,6 +36,7 @@
 <!--            <bean class=""/>-->
 <!--        </mvc:message-converters>-->
     </mvc:annotation-driven>
+    <!-- 映射静态资源 默认路径/ -->
     <mvc:default-servlet-handler default-servlet-name="default"/>
 
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -52,8 +53,9 @@
             <list>
                 <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
                 <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
                 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+
                 <bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"/>
                 <bean class="org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter"/>
             </list>
