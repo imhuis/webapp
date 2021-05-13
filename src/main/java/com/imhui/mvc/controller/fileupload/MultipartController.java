@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author: zyixh
+ * @date: 2020/1/28
+ * @description:
+ */
 @Controller
 @RequestMapping("/v1/file")
 public class MultipartController {

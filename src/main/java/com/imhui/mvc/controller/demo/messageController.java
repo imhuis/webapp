@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Locale;
 
+/**
+ * @author: zyixh
+ * @date: 2020/1/28
+ * @description:
+ */
 @Controller
 @RequestMapping("/v1/i18n")
 public class messageController {

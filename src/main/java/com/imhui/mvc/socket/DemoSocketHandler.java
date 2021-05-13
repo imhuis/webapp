@@ -1,11 +1,15 @@
 package com.imhui.mvc.socket;
 
-import org.springframework.stereotype.Service;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+/**
+ * @author: zyixh
+ * @date: 2020/1/28
+ * @description:
+ */
 public class DemoSocketHandler extends TextWebSocketHandler {
 
     @Override

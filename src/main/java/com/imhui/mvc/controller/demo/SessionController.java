@@ -1,12 +1,16 @@
 package com.imhui.mvc.controller.demo;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author: zyixh
+ * @date: 2020/1/28
+ * @description:
+ */
 @RestController
 @RequestMapping("/v1/test/session")
 public class SessionController {

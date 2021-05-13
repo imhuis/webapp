@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.constraints.Email;
 
-
+/**
+ * @author: zyixh
+ * @date: 2020/1/28
+ * @description:
+ */
 @Controller
 @RequestMapping("/v1/valid")
 @Validated
