@@ -1,7 +1,7 @@
 package com.imhui.core.config;
 
 import com.imhui.core.interceptor.WebSocketHandshakeInterceptor;
-import com.imhui.mvc.socket.DemoSocketHandler;
+import com.imhui.web.socket.DemoSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.TaskScheduler;

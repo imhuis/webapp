@@ -1,4 +1,4 @@
-package com.imhui.mvc.controller.fileupload;
+package com.imhui.web.controller.fileupload;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

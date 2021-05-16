@@ -1,4 +1,4 @@
-package com.imhui.mvc.controller.demo;
+package com.imhui.web.controller.demo;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

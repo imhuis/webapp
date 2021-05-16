@@ -1,6 +1,4 @@
-package com.imhui.mvc;
-
-import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
+package com.imhui.web;
 
 /**
  * @author: zyixh

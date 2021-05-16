@@ -20,7 +20,7 @@ public class ResponseUtil {
     }
 
     /**
-     *
+     * 成功
      * @param data
      * @param <T>
      * @return
@@ -33,6 +33,13 @@ public class ResponseUtil {
         return build(responseCodeEnum).setSuccess(false);
     }
 
+    /**
+     * 失败
+     * @param responseCodeEnum
+     * @param data
+     * @param <T>
+     * @return
+     */
     public static <T> ResponseResult<T> fail(ResponseCodeEnum responseCodeEnum, T data){
         return build(responseCodeEnum, data).setSuccess(false);
     }
@@ -42,7 +49,7 @@ public class ResponseUtil {
     }
 
     /**
-     *
+     * 自定义异常码
      * @param code
      * @param message
      * @param data

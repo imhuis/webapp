@@ -1,8 +1,7 @@
-package com.imhui.mvc.controller.demo;
+package com.imhui.web.controller.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +15,8 @@ import java.util.Locale;
  */
 @Controller
 @RequestMapping("/v1/i18n")
-public class messageController {
+@ResponseBody
+public class MessageController {
 
     private MessageSource messageSource;
 
@@ -25,10 +25,15 @@ public class messageController {
         this.messageSource = messageSource;
     }
 
-    @RequestMapping("/locale")
-    @ResponseBody
-    public String showMessage(Locale locale){
-        String name = messageSource.getMessage("name",null, locale);
-        return "hello " + name;
+    @RequestMapping("/hello")
+    public String showHello(Locale locale){
+        String helloMessage = messageSource.getMessage("hello_message",null, locale);
+        return helloMessage;
+    }
+
+    @RequestMapping("/message")
+    public String showMessage(String message, Locale locale){
+        String sourceMessage = messageSource.getMessage(message,null, locale);
+        return sourceMessage;
     }
 }

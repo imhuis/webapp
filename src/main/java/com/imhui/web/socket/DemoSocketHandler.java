@@ -1,4 +1,4 @@
-package com.imhui.mvc.socket;
+package com.imhui.web.socket;
 
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;

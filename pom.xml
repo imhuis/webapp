@@ -19,6 +19,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring.version>5.2.15.RELEASE</spring.version>
+    <spring.security.version>5.4.2</spring.security.version>
   </properties>
 
   <dependencies>
@@ -88,6 +89,18 @@
     </dependency>
 
     <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>5.4.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>5.4.2</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
       <version>2.3.6.RELEASE</version>
@@ -101,11 +114,6 @@
       <groupId>org.springframework.session</groupId>
       <artifactId>spring-session-data-redis</artifactId>
       <version>2.4.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-elasticsearch</artifactId>
-      <version>4.0.6.RELEASE</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-amqp -->
@@ -213,6 +221,7 @@
       <version>6.1.6.Final</version>
     </dependency>
 
+    <!-- log module -->
     <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
@@ -247,12 +256,6 @@
       <version>11.0</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
-    <dependency>
-      <groupId>org.elasticsearch</groupId>
-      <artifactId>elasticsearch</artifactId>
-      <version>7.10.0</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
     <dependency>
       <groupId>org.elasticsearch.client</groupId>
