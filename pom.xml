@@ -20,6 +20,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring.version>5.2.15.RELEASE</spring.version>
     <spring.security.version>5.4.2</spring.security.version>
+    <junit.version>5.7.2</junit.version>
   </properties>
 
   <dependencies>
@@ -36,6 +37,34 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
       <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+<!--    <dependency>-->
+<!--      <groupId>javax</groupId>-->
+<!--      <artifactId>javaee-api</artifactId>-->
+<!--      <version>8.0.1</version>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
+    <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.glassfish/javax.el -->
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-websocket -->
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-websocket</artifactId>
+      <version>9.0.46</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
@@ -235,6 +264,13 @@
       <version>2.3.2</version>
     </dependency>
 
+    <!-- apache -->
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.12.0</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
     <dependency>
       <groupId>commons-fileupload</groupId>
@@ -263,10 +299,34 @@
       <version>7.10.0</version>
     </dependency>
 
+    <!-- http rest client -->
+    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.13</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>4.9.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>
     <finalName>webapp</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+<!--      <plugin>-->
+<!--        <artifactId>maven-failsafe-plugin</artifactId>-->
+<!--        <version>2.22.2</version>-->
+<!--      </plugin>-->
+    </plugins>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

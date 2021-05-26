@@ -1,5 +1,7 @@
 package com.imhui.common.base;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 
 /**

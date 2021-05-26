@@ -1,5 +1,9 @@
 package com.imhui.web.controller.demo;
 
+import com.imhui.service.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +20,17 @@ import java.util.Map;
 @Controller
 @RequestMapping("/v1/test")
 public class HelloController {
+
+    private ServiceImpl serviceImpl;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @Lookup
+    public ServiceImpl getServiceImpl(){
+//        return applicationContext.getBean(ServiceImpl.class);
+        return null;
+    }
 
     @RequestMapping(value = "/home")
     public String home(){
@@ -47,5 +62,10 @@ public class HelloController {
         return map;
     }
 
+    @RequestMapping(path = "/hii", method = RequestMethod.GET)
+    @ResponseBody
+    public String hiService(){
+        return "helloworld, service is : " + getServiceImpl();
+    }
     
 }

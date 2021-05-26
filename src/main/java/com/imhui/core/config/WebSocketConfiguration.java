@@ -19,6 +19,11 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
  * proxy_set_header Upgrade $http_upgrade;
  * proxy_set_header Connection $connection_upgrade;
  */
+/**
+ * @author: zyixh
+ * @date: 2019/12/23
+ * @description:
+ */
 @Configuration
 @EnableWebSocket
 public class WebSocketConfiguration implements WebSocketConfigurer {

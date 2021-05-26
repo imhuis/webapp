@@ -17,17 +17,18 @@
     </context:component-scan>
 
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-        <!-- 扩展名支持 true则可以使 ?format=xml 生效 -->
+        <!-- 后缀方式 -->
         <property name="favorParameter" value="true"/>
+        <!-- 扩展名支持 true则可以使 ?format=xml 生效 -->
         <property name="parameterName" value="format"/>
         <property name="ignoreAcceptHeader" value="false"/>
+        <property name="defaultContentType" value="application/json"/>
         <property name="mediaTypes">
             <util:properties>
                 <prop key="json">application/json</prop>
                 <prop key="xml">application/xml</prop>
             </util:properties>
         </property>
-        <property name="defaultContentType" value="application/json"/>
     </bean>
 
     <!-- 自动配置 RequestMappingHandlerMapping RequestMappingHandlerAdapter -->

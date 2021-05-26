@@ -1,5 +1,6 @@
 package com.imhui.common.base;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.imhui.common.enums.ResponseCodeEnum;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -29,6 +30,7 @@ public class ResponseResult<T> implements Serializable {
     /**
      * 返回对象
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
     private String timestamp;

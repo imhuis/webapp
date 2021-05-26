@@ -2,6 +2,10 @@ package com.imhui.core.handler;
 
 import com.imhui.common.base.ResponseResult;
 import com.imhui.common.base.ResponseUtil;
+import com.imhui.common.enums.ResponseCodeEnum;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -24,14 +28,24 @@ import java.util.Set;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private MessageSource messageSource;
+
+    @Autowired
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
     @ExceptionHandler(value = MissingServletRequestParameterException.class)
     public ResponseResult parameterMissingExceptionHandler(MissingServletRequestParameterException e){
-        return ResponseUtil.success();
+        String message = messageSource.getMessage(ResponseCodeEnum.PARAMETER_MISSING.message(), null, LocaleContextHolder.getLocale());
+        return ResponseUtil.define(ResponseCodeEnum.PARAMETER_MISSING.code(), message).setSuccess(false);
     }
 
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
     public ResponseResult requestBodyMissingExceptionHandler(HttpMessageNotReadableException e){
-        return ResponseUtil.success();
+        System.out.println(e.getHttpInputMessage());
+        LocaleContextHolder.getLocale();
+        return ResponseUtil.fail(ResponseCodeEnum.REQUEST_BODY_MISSING);
     }
 
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
@@ -66,5 +80,14 @@ public class GlobalExceptionHandler {
         Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
         return ResponseUtil.define(0,"参数校验错误");
     }
+
+
+    /**
+     * 异常处理
+     *
+     * {@link org.springframework.web.servlet.handler.SimpleMappingExceptionResolver}
+     * {@link org.springframework.web.servlet.HandlerExceptionResolver}
+     * {@link ExceptionHandler annotation}
+     */
 
 }
