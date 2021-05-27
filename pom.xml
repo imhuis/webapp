@@ -67,17 +67,23 @@
       <version>9.0.46</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-context &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.springframework</groupId>-->
+<!--      <artifactId>spring-context</artifactId>-->
+<!--      <version>${spring.version}</version>-->
+<!--    </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-webflux -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webflux</artifactId>
       <version>${spring.version}</version>
     </dependency>
     <dependency>
@@ -255,7 +261,7 @@
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
-      <version>2.12.1</version>
+      <version>2.14.0</version>
     </dependency>
 
     <dependency>
@@ -278,19 +284,12 @@
       <version>1.4</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <version>2.14.0</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson -->
-    <dependency>
-      <groupId>io.github.openfeign</groupId>
-      <artifactId>feign-jackson</artifactId>
-      <version>11.0</version>
-    </dependency>
+    <!-- test -->
+<!--    <dependency>-->
+<!--      <groupId>io.projectreactor</groupId>-->
+<!--      <artifactId>reactor-test</artifactId>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
     <dependency>
@@ -300,6 +299,12 @@
     </dependency>
 
     <!-- http rest client -->
+    <!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson -->
+    <dependency>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-jackson</artifactId>
+      <version>11.0</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -311,6 +316,12 @@
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
       <version>4.9.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.projectreactor.netty/reactor-netty -->
+    <dependency>
+      <groupId>io.projectreactor.netty</groupId>
+      <artifactId>reactor-netty</artifactId>
+      <version>1.0.7</version>
     </dependency>
 
   </dependencies>
