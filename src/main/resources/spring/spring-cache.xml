@@ -13,9 +13,6 @@
 
 <!--    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" p:hostName="127.0.0.1" p:port="6379" p:usePool="true"/>-->
 
-    <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-        <property name="connectionFactory" ref="lettuceConnectionFactory"/>
-    </bean>
 
     <bean id="objectPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
         <property name="minIdle" value="5"/>
@@ -25,8 +22,22 @@
 
     <bean id="redisStandaloneConfiguration" class="org.springframework.data.redis.connection.RedisStandaloneConfiguration"/>
 
+    <bean id="lettucePoolingClientConfiguration" class="org.springframework.data.redis.connection.lettuce.DefaultLettuceClientConfiguration">
+
+    </bean>
     <bean id="lettuceConnectionFactory" class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory"
           c:configuration-ref="redisStandaloneConfiguration" destroy-method="destroy">
+
+
+    </bean>
+
+    <!-- default is StringRedisSerializer -->
+    <bean id="keySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+    <!-- default is JdkSerializationRedisSerializer -->
+    <bean id="valueSerializer" class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
+
+    <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory" ref="lettuceConnectionFactory"/>
     </bean>
 
 </beans>
