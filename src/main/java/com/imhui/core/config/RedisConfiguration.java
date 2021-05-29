@@ -10,6 +10,7 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.*;
+import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -54,7 +55,11 @@ public class RedisConfiguration {
      * 单机配置
      */
     public JedisConnectionFactory standaloneJedisConnectionFactory(RedisStandaloneConfiguration configuration){
-        return new JedisConnectionFactory(configuration);
+        JedisClientConfiguration jedisClientConfiguration = JedisClientConfiguration.builder()
+                .usePooling()
+                .poolConfig(genericObjectPoolConfig())
+                .build();
+        return new JedisConnectionFactory(configuration, jedisClientConfiguration);
     }
 
     /**
@@ -73,8 +78,10 @@ public class RedisConfiguration {
      * redis cluster
      * 1.数据自动分片（16384个Hash Slot）
      * 注意：jedis只能从master进行数据读写
+     *
+     * https://www.cnblogs.com/larryzeal/p/7188687.html
      */
-    @Bean(destroyMethod = "")
+//    @Bean(destroyMethod = "destroy")
     public LettuceConnectionFactory lettuceConnectionFactory(){
         RedisClusterConfiguration redisClusterConnection = new RedisClusterConfiguration();
         redisClusterConnection.addClusterNode(new RedisNode("redis1",26379));

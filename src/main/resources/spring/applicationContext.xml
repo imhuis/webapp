@@ -27,7 +27,7 @@
     <import resource="spring-cache.xml"/>
     <import resource="spring-session.xml"/>
     <import resource="spring-mq.xml"/>
-    <import resource="spring-es.xml"/>
+    <import resource="spring-elasticsearch.xml"/>
     <import resource="schedule.xml"/>
 
 </beans>

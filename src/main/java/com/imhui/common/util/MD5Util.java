@@ -1,14 +1,23 @@
 package com.imhui.common.util;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MD5Util {
+
+    private static final int STREAM_BUFFER_LENGTH = 1024;
 
     public MD5Util() {
     }
 
     private final static String[] hexDigits = { "0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
+
+    public static MessageDigest getDigest(final String algorithm) throws NoSuchAlgorithmException {
+        return MessageDigest.getInstance(algorithm);
+    }
 
     /**
      * 转换字节数组为16进制字串
@@ -46,12 +55,42 @@ public class MD5Util {
     public static String MD5Encode(String origin) {
         String resultString = null;
         try {
-            resultString = new String(origin);
+            resultString = origin;
             MessageDigest md = MessageDigest.getInstance("MD5");
             resultString = byteArrayToString(md.digest(resultString.getBytes()));
         } catch (Exception ex) {
         }
         return resultString;
+    }
+
+    public static byte[] md5(String txt) {
+        return md5(txt.getBytes());
+    }
+
+    public static byte[] md5(byte[] bytes) {
+        try {
+            MessageDigest digest = getDigest("MD5");
+            digest.update(bytes);
+            return digest.digest();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static byte[] md5(InputStream is) throws NoSuchAlgorithmException, IOException {
+        return updateDigest(getDigest("MD5"), is).digest();
+    }
+
+    public static MessageDigest updateDigest(final MessageDigest digest, final InputStream data) throws IOException {
+        final byte[] buffer = new byte[STREAM_BUFFER_LENGTH];
+        int read = data.read(buffer, 0, STREAM_BUFFER_LENGTH);
+
+        while (read > -1) {
+            digest.update(buffer, 0, read);
+            read = data.read(buffer, 0, STREAM_BUFFER_LENGTH);
+        }
+        return digest;
     }
 
     /**
@@ -73,12 +112,4 @@ public class MD5Util {
         return flag;
     }
 
-    public static void main(String args[]) {
-        String m = MD5Util.MD5Encode("hello");
-        System.out.println(m);
-
-        String m1 = MD5Util.MD5Encode("5d41402abc4b2a76b9719d911017c592");
-        System.out.println(m1);
-        System.out.println(MD5Util.compareMD5(m1, m));
-    }
 }
