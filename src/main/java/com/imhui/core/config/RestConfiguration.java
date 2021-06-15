@@ -3,8 +3,6 @@ package com.imhui.core.config;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpRequest;
@@ -81,7 +79,7 @@ public class RestConfiguration {
                 // 有 Keep-Alive 认里面的值，没有的话永久有效
                 //.setKeepAliveStrategy(DefaultConnectionKeepAliveStrategy.INSTANCE)
                 // 换成自定义的
-                .setKeepAliveStrategy(new CustomConnectionKeepAliveStrategy())
+                .setKeepAliveStrategy(new CustomizeConnectionKeepAliveStrategy())
                 .build();
 
         HttpComponentsClientHttpRequestFactory requestFactory =

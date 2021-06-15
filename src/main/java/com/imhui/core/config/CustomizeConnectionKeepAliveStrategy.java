@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @date: 2020/5/23
  * @description:
  */
-public class CustomConnectionKeepAliveStrategy implements ConnectionKeepAliveStrategy {
+public class CustomizeConnectionKeepAliveStrategy implements ConnectionKeepAliveStrategy {
 
     private final long DEFAULT_SECONDS = 30;
 
