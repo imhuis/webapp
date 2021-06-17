@@ -77,6 +77,11 @@
 
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <property name="validationPropertyMap">
+            <map>
+                <entry key="hibernate.validator.fail_fast" value="true"/>
+            </map>
+        </property>
         <!-- default source is ValidationMessages.properties -->
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>

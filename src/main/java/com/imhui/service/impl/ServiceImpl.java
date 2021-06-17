@@ -1,4 +1,4 @@
-package com.imhui.service;
+package com.imhui.service.impl;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;

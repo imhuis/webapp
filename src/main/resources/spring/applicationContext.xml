@@ -20,9 +20,7 @@
     <context:property-placeholder location="classpath*:properties/db.properties" ignore-unresolvable="true"/>
 
 
-
-
-    <import resource="spring-data.xml"/>
+    <import resource="spring-mybatis.xml"/>
     <import resource="spring-jpa.xml"/>
     <import resource="spring-cache.xml"/>
     <import resource="spring-session.xml"/>

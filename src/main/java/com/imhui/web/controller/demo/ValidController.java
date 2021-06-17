@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author: zyixh
@@ -16,7 +18,7 @@ import javax.validation.constraints.Email;
  * @description:
  */
 @Controller
-@RequestMapping("/v1/valid")
+@RequestMapping("/demo/valid")
 @Validated
 public class ValidController {
 
@@ -28,14 +30,14 @@ public class ValidController {
 
     @RequestMapping("/validUser")
     @ResponseBody
-    public Object validUser(@RequestBody User user){
+    public Object validUser(@Valid @RequestBody User user){
         return user;
     }
 
 
     @RequestMapping("/validEmail")
     @ResponseBody
-    public String validEmail(@Email String email){
+    public String validEmail(@NotNull @Email String email){
         return email;
     }
 }

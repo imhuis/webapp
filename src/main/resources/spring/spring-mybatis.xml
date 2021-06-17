@@ -43,7 +43,7 @@
         <property name="basePackage" value="com.imhui"/>
         <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
     </bean>
-    <mybatis:scan base-package="com.imhui"/>
+    <mybatis:scan base-package="com.imhui.mapper"/>
 
 
 

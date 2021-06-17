@@ -14,7 +14,7 @@ import java.util.Locale;
  * @description:
  */
 @Controller
-@RequestMapping("/v1/i18n")
+@RequestMapping("/demo/i18n")
 @ResponseBody
 public class MessageController {
 

@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
  * @description:
  */
 @RestController
-@RequestMapping("/v1/test/session")
+@RequestMapping("/demo/session")
 public class SessionController {
 
-    @RequestMapping("add")
+    @RequestMapping("/add")
     @ResponseBody
     public String put(HttpSession httpSession){
         httpSession.setAttribute("name","hello world");

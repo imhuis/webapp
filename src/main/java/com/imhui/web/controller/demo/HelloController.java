@@ -1,6 +1,6 @@
 package com.imhui.web.controller.demo;
 
-import com.imhui.service.ServiceImpl;
+import com.imhui.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +18,7 @@ import java.util.Map;
  * @description:
  */
 @Controller
-@RequestMapping("/v1/test")
+@RequestMapping("/demo/test")
 public class HelloController {
 
     private ServiceImpl serviceImpl;
