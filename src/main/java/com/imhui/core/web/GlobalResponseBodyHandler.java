@@ -9,7 +9,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
-@ControllerAdvice(basePackages = "com.imhui.web.controller")
+//@ControllerAdvice(basePackages = "com.imhui.web.controller")
 public class GlobalResponseBodyHandler implements ResponseBodyAdvice {
 
     @Override

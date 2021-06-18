@@ -9,6 +9,7 @@ public enum ResponseCodeEnum {
 
     SUCCESS(0, "success"),
 
+    METHOD_NOT_ALLOWED(405, null),
     PARAMETER_MISSING(1001, "spring.exception.1001"),
     REQUEST_BODY_MISSING(1002, "spring.exception.1002");
 

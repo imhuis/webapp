@@ -3,10 +3,7 @@ package com.imhui.web.controller.demo;
 import com.imhui.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -31,6 +28,12 @@ public class ValidController {
     @RequestMapping("/validUser")
     @ResponseBody
     public Object validUser(@Valid @RequestBody User user){
+        return user;
+    }
+
+    @RequestMapping(value = "/validUserForm",method = RequestMethod.POST)
+    @ResponseBody
+    public Object validUserForm(@Valid User user){
         return user;
     }
 

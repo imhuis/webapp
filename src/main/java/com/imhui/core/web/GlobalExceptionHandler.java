@@ -1,4 +1,4 @@
-package com.imhui.core.handler;
+package com.imhui.core.web;
 
 import com.imhui.common.base.ResponseResult;
 import com.imhui.common.base.ResponseUtil;
@@ -14,10 +14,10 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -30,9 +30,9 @@ import java.util.Set;
 /**
  * @author: zyixh
  * @date: 2021/5/15
- * @description:
+ * @description: 全局异常处理
  */
-@RestControllerAdvice(basePackages = "com.imhui.web.controller")
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
@@ -58,13 +58,19 @@ public class GlobalExceptionHandler {
         return ResponseUtil.fail(ResponseCodeEnum.REQUEST_BODY_MISSING);
     }
 
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
-    public ResponseResult methodNotSupportedException(HttpRequestMethodNotSupportedException e){
-        log.info("request method:{} is not allowed",e.getMethod());
-        return ResponseUtil.success();
+    public ResponseResult methodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e){
+        log.info("request method:{} is not allowed", e.getMethod());
+        return ResponseUtil.fail(ResponseCodeEnum.METHOD_NOT_ALLOWED);
     }
 
-//    @ExceptionHandler(value = BindException.class)
+    @ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
+    public ResponseResult httpMediaTypeNotSupportedExceptionHandler(HttpMediaTypeNotSupportedException e){
+        return ResponseUtil.define(415, "ContentType" + e.getContentType() + " not supported");
+    }
+
+    @ExceptionHandler(value = BindException.class)
     public ResponseResult bindExceptionHandler(BindException e){
         return ResponseUtil.success();
     }
@@ -85,7 +91,7 @@ public class GlobalExceptionHandler {
                 log.info("");
             }
         }
-        return ResponseUtil.define(1,"参数校验错误");
+        return ResponseUtil.define(1,"参数校验错误").setSuccess(false);
     }
 
     /**
@@ -99,7 +105,7 @@ public class GlobalExceptionHandler {
     public ResponseResult constraintViolationExceptionHandler(ConstraintViolationException e){
         Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
         constraintViolations.stream().forEach(c -> log.info("{}",c.getMessage()));
-        return ResponseUtil.define(0,"参数校验错误");
+        return ResponseUtil.define(0,"参数校验错误").setSuccess(false);
     }
 
 
