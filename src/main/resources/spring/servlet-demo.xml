@@ -9,6 +9,14 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" validator="validator">
+        <mvc:message-converters>
+            <bean class=""/>
+            <ref bean="jackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
         <!-- 扩展名支持 true则可以使 ?format=xml 生效 -->
         <!-- 优先级：后缀 > 请求参数 > 请求头部Accept -->
@@ -40,6 +48,20 @@
                     <property name="suffix" value=".jsp"/>
                 </bean>
             </util:list>
+        </property>
+    </bean>
+
+    <!-- Json Converter -->
+    <bean id="jackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="objectMapper">
+            <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                <property name="dateFormat">
+                    <bean class="java.text.SimpleDateFormat">
+                        <constructor-arg name="pattern" value="yyyy-MM-dd HH:mm:ss"/>
+                    </bean>
+                </property>
+                <property name="timeZone" value="Asia/Shanghai"/>
+            </bean>
         </property>
     </bean>
 

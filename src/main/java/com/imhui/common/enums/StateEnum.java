@@ -2,6 +2,11 @@ package com.imhui.common.enums;
 
 import java.util.Arrays;
 
+/**
+ * @author: zyixh
+ * @date:   2021/6/18
+ * @description:
+ */
 public enum StateEnum implements IntArrayValuable {
 
     CREATED(1,"created"),

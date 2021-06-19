@@ -20,6 +20,11 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import java.time.Duration;
 
+/**
+ * @author: zyixh
+ * @date:   2021/5/28
+ * @description:
+ */
 @Configuration
 public class RedisConfiguration {
     /**

@@ -9,6 +9,11 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+/**
+ * @author: zyixh
+ * @date:   2021/5/28
+ * @description:
+ */
 //@ControllerAdvice(basePackages = "com.imhui.web.controller")
 public class GlobalResponseBodyHandler implements ResponseBodyAdvice {
 

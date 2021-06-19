@@ -32,11 +32,7 @@
     </bean>
 
     <!-- 自动配置 RequestMappingHandlerMapping RequestMappingHandlerAdapter -->
-    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" validator="validator">
-<!--        <mvc:message-converters>-->
-<!--            <bean class=""/>-->
-<!--        </mvc:message-converters>-->
-    </mvc:annotation-driven>
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" validator="validator"/>
     <!-- 映射静态资源 默认路径/ -->
     <mvc:default-servlet-handler default-servlet-name="default"/>
 
@@ -67,6 +63,7 @@
         <property name="basenames">
             <list>
                 <value>classpath:i18n/messages</value>
+                <value>classpath:i18n/error-messages</value>
             </list>
         </property>
         <!-- 没有匹配 -->

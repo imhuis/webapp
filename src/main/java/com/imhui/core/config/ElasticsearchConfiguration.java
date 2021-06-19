@@ -7,6 +7,11 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author: zyixh
+ * @date:   2021/5/28
+ * @description:
+ */
 @Configuration
 public class ElasticsearchConfiguration {
 

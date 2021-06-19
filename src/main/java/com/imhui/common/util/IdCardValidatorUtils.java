@@ -27,6 +27,11 @@ import java.util.regex.Pattern;
  * 4.余数只可能有0 1 2 3 4 5 6 7 8 9 10这11个数字。其分别对应的最后一位身份证的号码为1 0 X 9 8 7 6 5 4 3 2。
  * 5.通过上面得知如果余数是2，就会在身份证的第18位数字上出现罗马数字的Ⅹ。如果余数是10，身份证的最后一位号码就是2。
  */
+/**
+ * @author: zyixh
+ * @date:   2021/6/17
+ * @description:
+ */
 public class IdCardValidatorUtils {
 
     /**

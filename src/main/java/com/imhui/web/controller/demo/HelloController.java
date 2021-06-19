@@ -18,7 +18,7 @@ import java.util.Map;
  * @description:
  */
 @Controller
-@RequestMapping("/demo/test")
+@RequestMapping("/demo")
 public class HelloController {
 
     private ServiceImpl serviceImpl;

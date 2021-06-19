@@ -5,6 +5,11 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author: zyixh
+ * @date:   2020/1/27
+ * @description:
+ */
 public class MD5Util {
 
     private static final int STREAM_BUFFER_LENGTH = 1024;

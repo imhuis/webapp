@@ -40,10 +40,10 @@
 <!--        </property>-->
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.imhui"/>
+        <property name="basePackage" value="com.imhui.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
     </bean>
-    <mybatis:scan base-package="com.imhui.mapper"/>
+<!--    <mybatis:scan base-package="com.imhui.mapper"/>-->
 
 
 

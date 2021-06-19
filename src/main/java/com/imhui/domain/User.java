@@ -10,11 +10,11 @@ public class User implements Serializable {
     private static final long serialVersionUID = 406503588846351701L;
 
     private Long id;
-    @NotBlank
+    @NotBlank(message = "{user.name.NotBlank}")
     private String name;
-    @NotNull
+    @NotNull(message = "{user.password.NotNull}")
     private String password;
-    @Email
+    @Email(message = "{user.email.NotNull}")
     private String email;
     public String address;
 

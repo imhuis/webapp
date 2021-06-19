@@ -1,5 +1,10 @@
 package com.imhui.common.constant;
 
+/**
+ * @author: zyixh
+ * @date:   2020/1/27
+ * @description:
+ */
 public interface Strings {
 
     String AMPERSAND = "&";

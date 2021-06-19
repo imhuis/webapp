@@ -6,6 +6,11 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
+/**
+ * @author: zyixh
+ * @date:   2020/1/27
+ * @description:
+ */
 @Documented
 @Target({ElementType.PARAMETER,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
